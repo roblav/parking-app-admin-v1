@@ -1,0 +1,52 @@
+<div class="container">
+
+
+  <div class="row">
+
+    <div class="col">
+      <div class="card">
+        <div class="card-block">
+          <p class="card-text">Search Car Registration:</p>
+          <input type="text" name="search-car-reg">
+          <button type="button" class="btn btn-primary" (click)="onSearchCarReg()">Go!</button>
+          <button id="clearSearchCarReg" type="button" class="btn btn-secondary" (click)="onClearSearchCarReg()">Clear</button>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col">
+      <div class="card">
+        <div class="card-block">
+          <p class="card-text">Add new details for a car owner</p>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formCarOwner">
+            Register a new Car Owner
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <car-owners-form 
+        (add)="onAddCarOwner($event)"
+        (update)="onUpdateCarOwner($event)"
+        [model]="model">
+      </car-owners-form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <h2>List of Car Owners</h2>
+      <car-owners-list
+        [carOwners]="carOwners">
+      </car-owners-list>
+    </div>
+  </div>
+
+</div>
+

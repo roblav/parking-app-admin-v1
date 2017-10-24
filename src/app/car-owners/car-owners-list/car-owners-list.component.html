@@ -1,0 +1,30 @@
+<div id="no-more-tables"> 
+<table class="table col-md-12 table-bordered table-striped">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Mobile Number</th>
+    <th>Vehicles</th>
+    <th>Edit</th>
+    <th>Delete</th>
+    <th>Send Skype Alert</th>
+  </tr>
+  </thead>
+  
+  <tbody>
+  <tr *ngFor="let carOwner of carOwners">
+    <td data-title="Name">{{carOwner.person.name}}</td>
+    <td data-title="Mobile Number">{{carOwner.person.mobileNumber}}</td>
+    <td data-title="Vehicles">
+      <p *ngFor="let vehicle of carOwner.vehicles">
+        {{vehicle.reg}}
+      </p>
+    </td>
+    <td><button type="button" class="btn btn-primary" (click)="editCarOwner(carOwner._id)" data-toggle="modal" data-target="#formCarOwner">Edit</button></td>
+    <td><button type="button" class="btn btn-warning" (click)="deleteCarOwner(carOwner._id)">Delete</button></td>
+    <td><button type="button" class="btn btn-warning" (click)="skypeCarOwner(carOwner.name)">Alert</button></td>
+  </tr>
+  </tbody>
+
+</table>
+</div>
