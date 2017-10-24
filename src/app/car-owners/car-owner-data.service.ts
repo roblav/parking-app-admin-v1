@@ -3,6 +3,10 @@ import { CarOwner } from './shared/car-owner.model';
 import { Person } from './shared/person.model';
 import { Vehicle } from './shared/vehicle.model'
 
+import * as data from './db.json';
+
+const carOwnerData = (<any>data).carOwners;
+
 @Injectable()
 export class CarOwnerDataService {
 // Placeholder for last id so we can simulate
@@ -26,6 +30,7 @@ export class CarOwnerDataService {
 
   // READ Simulate GET /carowners
   getAllCarOwners(): CarOwner[] {
+    this.carOwners = carOwnerData
     return this.carOwners
   }
 

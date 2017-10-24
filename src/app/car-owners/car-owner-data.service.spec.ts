@@ -60,7 +60,7 @@ describe('CarOwnerDataService', () => {
       inject([CarOwnerDataService], (service: CarOwnerDataService) => {
         service.addCarOwner(carOwner1);
         let carOwners = service.getAllCarOwners()
-        expect(carOwners[0]._id).toBeTruthy();
+        expect(carOwners[1]._id).toBeTruthy();
       })
     );
     it('should return all Car Owners', 

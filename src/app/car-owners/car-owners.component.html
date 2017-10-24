@@ -43,7 +43,11 @@
     <div class="col">
       <h2>List of Car Owners</h2>
       <car-owners-list
-        [carOwners]="carOwners">
+        [carOwners]="carOwners"
+        
+        (edit)="onEditCarOwner($event)" 
+        (delete)="onDeleteCarOwner($event)"
+        (skypeAlert)="onSkypeAlertCarOwner($event)">>
       </car-owners-list>
     </div>
   </div>

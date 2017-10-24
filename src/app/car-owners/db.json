@@ -29,6 +29,29 @@
         }
 
       ]
+    },
+    {
+      "_id": 2,
+
+      "person": {
+        "name": "Mickey Mouse",
+        "mobileNumber": "077 890 0988",
+        "workNumber": "0191 998899",
+        "emailAddress": "mickey@gmail.com",
+        "building": "some building",
+        "floor": 2,
+        "seat": "4G"
+      },
+      "vehicles": [
+        {
+          "type": "car",
+          "make": "ford",
+          "model": "mondeo",
+          "colour": "red",
+          "reg": "MM00 IKY"
+        }
+
+      ]
     }
   ]
 }

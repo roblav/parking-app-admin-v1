@@ -20,9 +20,20 @@
         {{vehicle.reg}}
       </p>
     </td>
-    <td><button type="button" class="btn btn-primary" (click)="editCarOwner(carOwner._id)" data-toggle="modal" data-target="#formCarOwner">Edit</button></td>
-    <td><button type="button" class="btn btn-warning" (click)="deleteCarOwner(carOwner._id)">Delete</button></td>
-    <td><button type="button" class="btn btn-warning" (click)="skypeCarOwner(carOwner.name)">Alert</button></td>
+    <td>
+      <button type="button" class="btn btn-primary" 
+      (click)="editCarOwner(carOwner._id)"
+      data-toggle="modal" 
+      data-target="#formCarOwner">Edit</button>
+    </td>
+    <td>
+      <button type="button" class="btn btn-warning" 
+      (click)="deleteCarOwner(carOwner._id)">Delete</button>
+    </td>
+    <td>
+      <button type="button" class="btn btn-warning" 
+      (click)="skypeCarOwner(carOwner.name)">Alert</button>
+    </td>
   </tr>
   </tbody>
 
