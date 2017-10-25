@@ -9,16 +9,40 @@ import { FormsModule } from '@angular/forms';
 })
 export class CarOwnersFormComponent implements OnInit {
 
+  editCarOwner: boolean = false;
+
   @Input() model: CarOwner
   @Output() close: EventEmitter<boolean> = new EventEmitter();
+  @Output() add: EventEmitter<CarOwner> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  //Closing the form should reset the model to default CarOwner
   onClose() {
     this.close.emit(true)
+  }
+
+  onSubmit() {
+    if(this.editCarOwner) {
+      this.editedCarOwner()
+    } else {
+      this.addCarOwner();
+    }
+  }
+
+  addCarOwner() {
+    this.add.emit(this.model);
+    //this.model = new CarOwner();
+    this.onClose();
+  }
+
+  editedCarOwner() {
+    //this.update.emit(this.model);
+    this.model = new CarOwner();
+    this.editCarOwner = false;
   }
 
 }

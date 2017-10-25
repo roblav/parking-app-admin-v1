@@ -25,7 +25,7 @@ export class CarOwnerDataService {
     }
 
     this.carOwners.push(carOwner);
-    return this;
+    return this.carOwners;
   }
 
   // READ Simulate GET /carowners

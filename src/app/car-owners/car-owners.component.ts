@@ -45,8 +45,9 @@ export class CarOwnersComponent implements OnInit {
 
   //Create
   addCarOwner() {
-    this.carOwnerDataService.addCarOwner(this.model);
-    this.model = this.default
+    console.log(JSON.stringify(this.model));
+    this.carOwners = this.carOwnerDataService.addCarOwner(this.model);
+    //this.model = this.default
   }
   //Read
   getAllcarOwners() {
