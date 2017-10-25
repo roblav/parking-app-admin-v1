@@ -7,7 +7,7 @@
       <div class="card">
         <div class="card-block">
           <p class="card-text">Search Car Registration:</p>
-          <input type="text" name="search-car-reg">
+          <input type="text" name="search-car-reg" [(ngModel)]="carReg">
           <button type="button" class="btn btn-primary" (click)="onSearchCarReg()">Go!</button>
           <button id="clearSearchCarReg" type="button" class="btn btn-secondary" (click)="onClearSearchCarReg()">Clear</button>
         </div>

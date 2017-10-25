@@ -18,6 +18,10 @@ import { Vehicle } from './shared/vehicle.model'
 })
 export class CarOwnersComponent implements OnInit {
 
+  carReg: string = "";
+  carOwners: CarOwner[] = []
+  carOwnersOrig: CarOwner[] = []
+
   person: Person = new Person();
   vehicle: Vehicle = new Vehicle();
   default: CarOwner = {
@@ -32,6 +36,11 @@ export class CarOwnersComponent implements OnInit {
   constructor(private carOwnerDataService: CarOwnerDataService) { }
 
   ngOnInit() {
+    this.updateCarOwnersArray();
+  }
+
+  updateCarOwnersArray(){
+    this.carOwners = this.getAllcarOwners();
   }
 
   //Create
@@ -40,7 +49,7 @@ export class CarOwnersComponent implements OnInit {
     this.model = this.default
   }
   //Read
-  get carOwners() {
+  getAllcarOwners() {
     return this.carOwnerDataService.getAllCarOwners();
   }
   //Update
@@ -64,5 +73,25 @@ export class CarOwnersComponent implements OnInit {
   onCloseForm(state: boolean) {
     //Set model to default
     this.model = this.default;
+  }
+
+  onSearchCarReg() {
+    //console.log(this.carReg)
+    if(this.carReg !== ""){
+      this.carOwnersOrig = this.carOwners;
+      //loop over each carOwner object
+      let carSearch = this.carOwners.filter((co) => co.vehicles.filter((vehicle) => vehicle.reg === this.carReg).pop()).pop();
+      this.carOwners = [carSearch]
+    }
+    else if (this.carOwnersOrig !== []){
+      this.carOwners = this.carOwnersOrig;
+    }
+    
+  }
+
+  onClearSearchCarReg(){
+    this.carOwners = this.carOwnersOrig;
+    //Clear input
+    this.carReg = "";
   }
 }
