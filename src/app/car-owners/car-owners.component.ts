@@ -20,11 +20,13 @@ export class CarOwnersComponent implements OnInit {
 
   person: Person = new Person();
   vehicle: Vehicle = new Vehicle();
-  model: CarOwner = {
+  default: CarOwner = {
         _id: 0,
         person: this.person,
         vehicles:[this.vehicle]
       }
+
+  model: CarOwner = this.default;
   //carOwners: CarOwner[] = carOwners
 
   constructor(private carOwnerDataService: CarOwnerDataService) { }
@@ -35,11 +37,7 @@ export class CarOwnersComponent implements OnInit {
   //Create
   addCarOwner() {
     this.carOwnerDataService.addCarOwner(this.model);
-    this.model = {
-        _id: 0,
-        person: this.person,
-        vehicles:[this.vehicle]
-      }
+    this.model = this.default
   }
   //Read
   get carOwners() {
@@ -63,4 +61,8 @@ export class CarOwnersComponent implements OnInit {
     //this.updateCarOwnersArray();
   }
 
+  onCloseForm(state: boolean) {
+    //Set model to default
+    this.model = this.default;
+  }
 }

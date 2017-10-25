@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { CarOwner } from '../shared/car-owner.model';
 import { FormsModule } from '@angular/forms';
 
@@ -10,10 +10,15 @@ import { FormsModule } from '@angular/forms';
 export class CarOwnersFormComponent implements OnInit {
 
   @Input() model: CarOwner
+  @Output() close: EventEmitter<boolean> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onClose() {
+    this.close.emit(true)
   }
 
 }

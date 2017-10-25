@@ -1,0 +1,4 @@
+Error: Expected 
+Object({ _id: 1, person: Object({ name: 'James', mobileNumber: '000', workNumber: '001', emailAddress: 'rob@gmail.com', building: 'some building', floor: 2, seat: '4G' }), vehicles: [ Object({ type: 'car', make: 'ford', model: 'mondeo', colour: 'blue', reg: 'NH16 YHG' }), Object({ type: 'Car', make: 'Ferrari', model: 'F60 America', colour: 'Blue', reg: 'HELL YEH' }) ] }) to equal <jasmine.objectContaining(
+CarOwner({ person: Person({ name: 'James', mobileNumber: '000', workNumber: '001', emailAddress: 'rob@gmail.com', building: 'some building', floor: 2, seat: '4G' }), vehicles: [ Vehicle({ type: 'car', make: 'ford', model: 'mondeo', colour: 'blue', reg: 'NH16 YHG' }), Vehicle({ type: 'Car', make: 'Ferrari', model: 'F60 America', colour: 'Blue', reg: 'HELL YEH' }) ] }))>.
+    

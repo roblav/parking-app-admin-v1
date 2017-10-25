@@ -33,6 +33,7 @@ describe('CarOwnerDataService', () => {
   });
       
   let carOwner1 = new CarOwner ({
+          _id: 10001,
           person: person1,
           vehicles:[vehicle1, vehicle2]
   });
@@ -51,9 +52,10 @@ describe('CarOwnerDataService', () => {
   }));
 
   describe('#getAllCarOwners()', () => {
-    it('should return an empty array by default', 
+    it('should return a CarOwner object', 
       inject([CarOwnerDataService], (service: CarOwnerDataService) => {
-        expect(service.getAllCarOwners()).toEqual([]);
+        let carOwners = service.getAllCarOwners();
+        expect(carOwners[0].person).toEqual(jasmine.objectContaining(carOwner1.person));
       })
     );
     it('should give all new Car Owners a random string for _id', 
@@ -63,31 +65,25 @@ describe('CarOwnerDataService', () => {
         expect(carOwners[1]._id).toBeTruthy();
       })
     );
-    it('should return all Car Owners', 
-      inject([CarOwnerDataService], (service: CarOwnerDataService) => {
-        service.addCarOwner(carOwner1);
-        expect(service.getAllCarOwners()).toEqual([carOwner1]);
-      })
-    );
   });
 
   describe('#getCarOwnerById(id)', () => {
     it('should return the correct Car Owner',
       inject([CarOwnerDataService], (service: CarOwnerDataService) => {
         service.addCarOwner(carOwner1);
-        expect(service.getCarOwnerById(1)).toEqual(carOwner1);
+        expect(service.getCarOwnerById(10001)).toEqual(carOwner1);
       })
     )
   });
 
   // DELETE Simulate DELETE /carowner/:id
   describe('#deleteCarOwnerByID(id)', () => {
-    it('should return empty CarOwners',
+    it('should return CarOwners with specific CarOwner object deleted',
       inject([CarOwnerDataService], (service: CarOwnerDataService) => {
         service.addCarOwner(carOwner1);
-        expect(service.getAllCarOwners()).toEqual([carOwner1]);
-        service.deleteCarOwnerByID(1);
-        expect(service.getAllCarOwners()).toEqual([]);
+        expect(service.getCarOwnerById(10001)).toEqual(carOwner1);
+        service.deleteCarOwnerByID(10001);
+        expect(service.getCarOwnerById(10001)).toBeFalsy();
       })
     )
   });
@@ -97,16 +93,14 @@ describe('CarOwnerDataService', () => {
     it('should return carOwner and updated CarOwners data',
       inject([CarOwnerDataService], (service: CarOwnerDataService) => {
         service.addCarOwner(carOwner1);
-        expect(service.getAllCarOwners()).toEqual([carOwner1]);
-        let newCarOwner = service.updateCarOwnerById(1, {person:{name:'Bob'}});
+        let newCarOwner = service.updateCarOwnerById(10001, {person:{name:'Bob'}});
         expect(newCarOwner.person.name).toEqual('Bob');
       })
     );
     it('should return null if id returns no carOwner found',
       inject([CarOwnerDataService], (service: CarOwnerDataService) => {
         service.addCarOwner(carOwner1);
-        expect(service.getAllCarOwners()).toEqual([carOwner1]);
-        let newCarOwner = service.updateCarOwnerById(5, {person:{name:'Bob'}});
+        let newCarOwner = service.updateCarOwnerById(5000, {person:{name:'Bob'}});
         expect(newCarOwner).toEqual(null);
       })
     );

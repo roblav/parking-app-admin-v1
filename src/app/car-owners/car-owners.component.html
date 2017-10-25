@@ -33,6 +33,7 @@
     <div class="col">
       <car-owners-form 
         (add)="onAddCarOwner($event)"
+        (close)="onCloseForm($event)"
         (update)="onUpdateCarOwner($event)"
         [model]="model">
       </car-owners-form>
