@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 //import * as data from './db.json';
 import { FormsModule } from '@angular/forms';
 import { CarOwnerDataService } from './car-owner-data.service';
@@ -16,7 +16,7 @@ import { Vehicle } from './shared/vehicle.model'
   styleUrls: ['./car-owners.component.css'],
   providers: [CarOwnerDataService]
 })
-export class CarOwnersComponent implements OnInit {
+export class CarOwnersComponent implements OnInit, OnChanges {
 
   carReg: string = "";
   carOwners: CarOwner[] = []
@@ -35,6 +35,10 @@ export class CarOwnersComponent implements OnInit {
 
   constructor(private carOwnerDataService: CarOwnerDataService) { }
 
+  ngOnChanges() {
+    this.updateCarOwnersArray();
+  }
+
   ngOnInit() {
     this.updateCarOwnersArray();
   }
@@ -44,9 +48,9 @@ export class CarOwnersComponent implements OnInit {
   }
 
   //Create
-  addCarOwner() {
-    console.log(JSON.stringify(this.model));
-    this.carOwners = this.carOwnerDataService.addCarOwner(this.model);
+  addCarOwner(carOwner) {
+    //console.log(JSON.stringify(carOwner));
+    this.carOwners = this.carOwnerDataService.addCarOwner(carOwner);
     //this.model = this.default
   }
   //Read
@@ -62,6 +66,10 @@ export class CarOwnersComponent implements OnInit {
     this.carOwnerDataService.deleteCarOwnerByID(id);
   }
 
+  onUpdateCarOwner(carOwner: CarOwner) {
+    console.log('Car Owner: '+JSON.stringify(carOwner));
+    this.updateCarOwner(carOwner._id, carOwner);
+  }
   onEditCarOwner(id: number) {
     let carOwner = this.carOwners
       .filter((co) => co._id === id)
@@ -69,11 +77,6 @@ export class CarOwnersComponent implements OnInit {
     this.model = Object.assign({}, carOwner);
 
     //this.updateCarOwnersArray();
-  }
-
-  onCloseForm(state: boolean) {
-    //Set model to default
-    this.model = this.default;
   }
 
   onSearchCarReg() {

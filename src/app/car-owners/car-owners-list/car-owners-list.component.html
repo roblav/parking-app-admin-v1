@@ -2,7 +2,9 @@
 <table class="table col-md-12 table-bordered table-striped">
   <thead>
   <tr>
+    <th>ID</th>
     <th>Name</th>
+    <th>Email</th>
     <th>Mobile Number</th>
     <th>Vehicles</th>
     <th>Edit</th>
@@ -13,7 +15,9 @@
   
   <tbody>
   <tr *ngFor="let carOwner of carOwners">
+    <td data-title="ID">{{carOwner._id}}</td>
     <td data-title="Name">{{carOwner.person.name}}</td>
+    <td data-title="Email">{{carOwner.person.emailAddress}}</td>
     <td data-title="Mobile Number">{{carOwner.person.mobileNumber}}</td>
     <td data-title="Vehicles">
       <p *ngFor="let vehicle of carOwner.vehicles">

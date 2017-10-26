@@ -11,7 +11,7 @@ const carOwnerData = (<any>data).carOwners;
 export class CarOwnerDataService {
 // Placeholder for last id so we can simulate
   // automatic incrementing of id's
-  lastId: number = 0;
+  lastId: number = 10;
 
   carOwners: CarOwner[] = [];
 
