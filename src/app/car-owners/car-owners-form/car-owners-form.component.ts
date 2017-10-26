@@ -24,7 +24,6 @@ export class CarOwnersFormComponent implements OnInit, OnChanges {
   model = JSON.parse(JSON.stringify(this.default));
 
   @Input()  updateCarOwner: CarOwner
-  @Output() close: EventEmitter<boolean> = new EventEmitter();
   @Output() add: EventEmitter<CarOwner> = new EventEmitter();
   @Output() edit: EventEmitter<CarOwner> = new EventEmitter();
 

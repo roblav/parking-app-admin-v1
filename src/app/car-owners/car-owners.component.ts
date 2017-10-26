@@ -30,8 +30,7 @@ export class CarOwnersComponent implements OnInit, OnChanges {
         vehicles:[this.vehicle]
       }
 
-  model: CarOwner = this.default;
-  //carOwners: CarOwner[] = carOwners
+  model: CarOwner = JSON.parse(JSON.stringify(this.default));
 
   constructor(private carOwnerDataService: CarOwnerDataService) { }
 
@@ -43,15 +42,17 @@ export class CarOwnersComponent implements OnInit, OnChanges {
     this.updateCarOwnersArray();
   }
 
+  /*___ Helper Method ___*/
+
   updateCarOwnersArray(){
     this.carOwners = this.getAllcarOwners();
   }
 
+  /*___ CRUD ___*/
+
   //Create
   addCarOwner(carOwner) {
-    //console.log(JSON.stringify(carOwner));
     this.carOwners = this.carOwnerDataService.addCarOwner(carOwner);
-    //this.model = this.default
   }
   //Read
   getAllcarOwners() {
@@ -66,18 +67,14 @@ export class CarOwnersComponent implements OnInit, OnChanges {
     this.carOwnerDataService.deleteCarOwnerByID(id);
   }
 
+  /*___ Car Form Listen events ___*/
+
   onUpdateCarOwner(carOwner: CarOwner) {
     console.log('Car Owner: '+JSON.stringify(carOwner));
     this.updateCarOwner(carOwner._id, carOwner);
   }
-  onEditCarOwner(id: number) {
-    let carOwner = this.carOwners
-      .filter((co) => co._id === id)
-      .pop();
-    this.model = Object.assign({}, carOwner);
 
-    //this.updateCarOwnersArray();
-  }
+  /*___ Car Reg Search Form ___*/
 
   onSearchCarReg() {
     //console.log(this.carReg)
