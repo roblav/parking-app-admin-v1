@@ -12,7 +12,7 @@ import { CarOwner } from './car-owners/shared/car-owner.model'
 import * as data from './car-owners/db.json';
 
 const carOwnerData = (<any>data).carOwners;
-const API_URL = environment.apiUrl;
+const API_URL = 'https://cors-anywhere.herokuapp.com/'+environment.apiUrl;
 
 @Injectable()
 export class ApiService {
@@ -32,9 +32,9 @@ export class ApiService {
 
   public getAllCarOwners(): Observable<CarOwner[]> {
     //this.http.get()
-    // return this.http
-    //   .get(API_URL + 'parking/The%20Park%20Knight')
-    //   .catch(this.handleError)
+    //return this.http
+    //  .get(API_URL + '/parking')
+    //  .catch(this.handleError)
     return Observable.of(carOwnerData);
   }
 

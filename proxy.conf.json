@@ -1,0 +1,10 @@
+{
+  "/parking": {
+    "target": "http://151.236.33.10:9090",
+    "secure": false,
+    "pathRewrite": {
+      "^/parking": ""
+    },
+    "changeOrigin": true
+  }
+}
