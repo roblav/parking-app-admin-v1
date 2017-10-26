@@ -6,9 +6,12 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import 'rxjs/add/observable/of';
 
 import { CarOwner } from './car-owners/shared/car-owner.model'
+import * as data from './car-owners/db.json';
 
+const carOwnerData = (<any>data).carOwners;
 const API_URL = environment.apiUrl;
 
 @Injectable()
@@ -24,8 +27,15 @@ export class ApiService {
   }
 
   // READ API: GET /todos
-  public getAllCarOwners() {
-    // will use this.http.get()
+
+  //parking/carOwnerId/The%20Park%20Knight
+
+  public getAllCarOwners(): Observable<CarOwner[]> {
+    //this.http.get()
+    // return this.http
+    //   .get(API_URL + 'parking/The%20Park%20Knight')
+    //   .catch(this.handleError)
+    return Observable.of(carOwnerData);
   }
 
   // UPDATE API: PUT /todos/:id
@@ -41,5 +51,11 @@ export class ApiService {
   // API: GET /todos/:id
   public getCarOwnerById(carOwnerId: number) {
     // will use this.http.get()
+    //parking/carOwnerId //The%20Park%20Knight
+  }
+
+  private handleError (error: Response | any) {
+    console.error('ApiService::handleError', error);
+    return Observable.throw(error);
   }
 }

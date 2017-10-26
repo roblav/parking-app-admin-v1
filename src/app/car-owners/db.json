@@ -4,9 +4,8 @@
       "_id": 1,
 
       "person": {
-        "name": "James",
+        "name": "Mark",
         "mobileNumber": "000",
-        "workNumber": "001",
         "emailAddress": "rob@gmail.com",
         "building": "some building",
         "floor": 2,
@@ -34,7 +33,7 @@
       "_id": 2,
 
       "person": {
-        "name": "Mickey Mouse",
+        "name": "Mickey",
         "mobileNumber": "077 890 0988",
         "workNumber": "0191 998899",
         "emailAddress": "mickey@gmail.com",

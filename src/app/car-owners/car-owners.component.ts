@@ -19,7 +19,8 @@ import { Vehicle } from './shared/vehicle.model'
 export class CarOwnersComponent implements OnInit, OnChanges {
 
   carReg: string = "";
-  carOwners: CarOwner[] = []
+  carOwners: CarOwner[] = [];
+  carOwnerTest: CarOwner;
   carOwnersOrig: CarOwner[] = []
 
   person: Person = new Person();
@@ -45,7 +46,15 @@ export class CarOwnersComponent implements OnInit, OnChanges {
   /*___ Helper Method ___*/
 
   updateCarOwnersArray(){
-    this.carOwners = this.getAllcarOwners();
+    //this.carOwners = this.getAllcarOwners();
+    this.carOwnerDataService
+    .getAllCarOwners()
+    .subscribe(
+      (carOwners) => {
+        console.log(JSON.stringify(carOwners))
+        this.carOwners = carOwners;
+      }
+    )
   }
 
   /*___ CRUD ___*/

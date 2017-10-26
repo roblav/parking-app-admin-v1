@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { ApiService } from '../api.service';
+
 import { CarOwner } from './shared/car-owner.model';
 import { Person } from './shared/person.model';
 import { Vehicle } from './shared/vehicle.model'
@@ -15,7 +18,7 @@ export class CarOwnerDataService {
 
   carOwners: CarOwner[] = [];
 
-  constructor() { }
+  constructor(private api: ApiService) { }
 
   //CREATE Simulate POST /carowners
   addCarOwner(carOwner){
@@ -29,9 +32,12 @@ export class CarOwnerDataService {
   }
 
   // READ Simulate GET /carowners
-  getAllCarOwners(): CarOwner[] {
-    this.carOwners = carOwnerData
-    return this.carOwners
+  //getAllCarOwners(): CarOwner[] {
+  //  this.carOwners = carOwnerData
+  //  return this.carOwners
+  //}
+  getAllCarOwners(): Observable<CarOwner[]> {
+    return this.api.getAllCarOwners();
   }
 
   // UPDATE Simulate PUT /carowners

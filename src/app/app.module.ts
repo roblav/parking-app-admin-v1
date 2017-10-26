@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { CarOwnersModule } from './car-owners/car-owners.module';
 import { ApiService } from './api.service';
 
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -13,7 +16,9 @@ import { ApiService } from './api.service';
   imports: [
     BrowserModule,
     FormsModule,
-    CarOwnersModule
+    CarOwnersModule,
+    HttpClientModule,
+    HttpModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
