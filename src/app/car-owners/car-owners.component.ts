@@ -22,11 +22,12 @@ export class CarOwnersComponent implements OnInit, OnChanges {
   carOwners: CarOwner[] = [];
   carOwnerTest: CarOwner;
   carOwnersOrig: CarOwner[] = []
+  editCarOwner: CarOwner;
 
   person: Person = new Person();
   vehicle: Vehicle = new Vehicle();
   default: CarOwner = {
-        _id: 0,
+        id: "0",
         person: this.person,
         vehicles:[this.vehicle]
       }
@@ -51,8 +52,8 @@ export class CarOwnersComponent implements OnInit, OnChanges {
     .getAllCarOwners()
     .subscribe(
       (carOwners) => {
-        console.log(JSON.stringify(carOwners))
-        this.carOwners = carOwners;
+        //console.log(JSON.parse(carOwners["_body"]).carOwners)
+        this.carOwners = JSON.parse(carOwners["_body"]).carOwners;
       }
     )
   }
@@ -68,7 +69,7 @@ export class CarOwnersComponent implements OnInit, OnChanges {
     return this.carOwnerDataService.getAllCarOwners();
   }
   //Update
-  updateCarOwner(id: number, carOwner: CarOwner) {
+  updateCarOwner(id: string, carOwner: CarOwner) {
     this.carOwnerDataService.updateCarOwnerById(id, carOwner);
   }
   //Delete
@@ -76,11 +77,27 @@ export class CarOwnersComponent implements OnInit, OnChanges {
     this.carOwnerDataService.deleteCarOwnerByID(id);
   }
 
+  /*___ Car List Listen events ___*/
+
+  onEditCarOwner(id: string) {
+    let carOwner = this.carOwners.filter((co) => co.id === id).pop();
+    this.model = Object.assign({}, carOwner);
+
+    //this.updateCarOwnersArray();
+  }
+
   /*___ Car Form Listen events ___*/
 
   onUpdateCarOwner(carOwner: CarOwner) {
-    console.log('Car Owner: '+JSON.stringify(carOwner));
-    this.updateCarOwner(carOwner._id, carOwner);
+    //console.log('Car Owner: '+JSON.stringify(carOwner));
+    //Update local car owner array
+    //Return all expect the matching carOwner
+    //Push updatedCarOwner back on to array
+    this.carOwners = this.carOwners.filter((co) => co.id !== carOwner.id)
+    this.carOwners.push(carOwner)
+    //Update the user on the API
+    this.updateCarOwner(carOwner.id, carOwner);
+
   }
 
   /*___ Car Reg Search Form ___*/
@@ -90,7 +107,7 @@ export class CarOwnersComponent implements OnInit, OnChanges {
     if(this.carReg !== ""){
       this.carOwnersOrig = this.carOwners;
       //loop over each carOwner object
-      let carSearch = this.carOwners.filter((co) => co.vehicles.filter((vehicle) => vehicle.reg === this.carReg).pop()).pop();
+      let carSearch = this.carOwners.filter((co) => co.vehicles.filter((vehicle) => vehicle.regNo === this.carReg).pop()).pop();
       this.carOwners = [carSearch]
     }
     else if (this.carOwnersOrig !== []){

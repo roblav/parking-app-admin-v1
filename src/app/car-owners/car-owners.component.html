@@ -31,10 +31,11 @@
 
   <div class="row">
     <div class="col">
-      <car-owners-form 
+      <car-owners-form
+        [updateCarOwner]="model"
+
         (add)="addCarOwner($event)"
-        (edit)="onUpdateCarOwner($event)"
-        [updateCarOwner]="model">
+        (edit)="onUpdateCarOwner($event)">
       </car-owners-form>
     </div>
   </div>
@@ -47,7 +48,7 @@
         
         (edit)="onEditCarOwner($event)" 
         (delete)="onDeleteCarOwner($event)"
-        (skypeAlert)="onSkypeAlertCarOwner($event)">>
+        (skypeAlert)="onSkypeAlertCarOwner($event)">
       </car-owners-list>
     </div>
   </div>

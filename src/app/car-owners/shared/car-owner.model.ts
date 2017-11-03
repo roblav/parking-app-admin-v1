@@ -2,7 +2,7 @@ import { Person } from './person.model'
 import { Vehicle } from './vehicle.model'
 
 export class CarOwner {
-  public _id?: number;
+  public id?: string;
 
   public person: Person;
   public vehicles: Vehicle[];

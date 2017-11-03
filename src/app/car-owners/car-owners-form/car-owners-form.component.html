@@ -62,7 +62,7 @@
             <div class="form-group row" *ngFor="let vehicle of model.vehicles; let i = index">
               <label for="carReg{{i}}" class="col-sm-2 col-form-label">Car Reg {{i}}</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="carReg{{i}}" required [(ngModel)]  ="vehicle.reg" name="carReg{{i}}">
+                <input type="text" class="form-control" id="regNo{{i}}" required [(ngModel)]  ="vehicle.regNo" name="regNo{{i}}">
               </div>
             </div>
 

@@ -22,9 +22,9 @@ export class CarOwnerDataService {
 
   //CREATE Simulate POST /carowners
   addCarOwner(carOwner){
-    if(!carOwner._id){
-      carOwner._id = ++this.lastId;
-      console.log(carOwner._id)
+    if(!carOwner.id){
+      carOwner.id = ++this.lastId;
+      console.log(carOwner.id)
     }
 
     this.carOwners.push(carOwner);
@@ -41,26 +41,31 @@ export class CarOwnerDataService {
   }
 
   // UPDATE Simulate PUT /carowners
-  updateCarOwnerById(id: number, values: Object = {}): CarOwner {
+  updateCarOwnerById(id: string, values: Object = {}): CarOwner {
+
+    console.log(id)
     let carOwner = this.getCarOwnerById(id)
+    //console.log(id)
     if (!carOwner){
       return null;
     }
     Object.assign(carOwner, values);
+    console.log(this.carOwners)
     return carOwner;
   }
 
   // DELETE Simulate DELETE /carowner/:id
   deleteCarOwnerByID(id) {
     this.carOwners = this.carOwners
-      .filter(carOwner => carOwner._id !== id)
+      .filter(carOwner => carOwner.id !== id)
     return this;
   }
 
   // Simulate GET /carowner/:id
   getCarOwnerById(id): CarOwner {
+    console.log(this.carOwners)
     return this.carOwners
-      .filter(carOwner => carOwner._id === id)
+      .filter(carOwner => carOwner.id === id)
       .pop()
   }
 

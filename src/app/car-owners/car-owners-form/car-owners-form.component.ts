@@ -16,7 +16,7 @@ export class CarOwnersFormComponent implements OnInit, OnChanges {
   person: Person = new Person();
   vehicle: Vehicle = new Vehicle();
   default: CarOwner = {
-        _id: 0,
+        id: "0",
         person: this.person,
         vehicles:[this.vehicle]
       }
@@ -30,7 +30,7 @@ export class CarOwnersFormComponent implements OnInit, OnChanges {
   constructor() { }
 
   ngOnChanges() {
-    if(this.updateCarOwner._id !== 0){
+    if(this.updateCarOwner.id !== "0"){
       this.model = JSON.parse(JSON.stringify(this.updateCarOwner));
       this.editMode = true
     }

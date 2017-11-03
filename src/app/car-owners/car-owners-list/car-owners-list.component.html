@@ -15,24 +15,24 @@
   
   <tbody>
   <tr *ngFor="let carOwner of carOwners">
-    <td data-title="ID">{{carOwner._id}}</td>
+    <td data-title="ID">{{carOwner.id}}</td>
     <td data-title="Name">{{carOwner.person.name}}</td>
     <td data-title="Email">{{carOwner.person.emailAddress}}</td>
     <td data-title="Mobile Number">{{carOwner.person.mobileNumber}}</td>
     <td data-title="Vehicles">
       <p *ngFor="let vehicle of carOwner.vehicles">
-        {{vehicle.reg}}
+        {{vehicle.regNo}}
       </p>
     </td>
     <td>
       <button type="button" class="btn btn-primary" 
-      (click)="editCarOwner(carOwner._id)"
+      (click)="editCarOwner(carOwner.id)"
       data-toggle="modal" 
       data-target="#formCarOwner">Edit</button>
     </td>
     <td>
       <button type="button" class="btn btn-warning" 
-      (click)="deleteCarOwner(carOwner._id)">Delete</button>
+      (click)="deleteCarOwner(carOwner.id)">Delete</button>
     </td>
     <td>
       <button type="button" class="btn btn-warning" 
