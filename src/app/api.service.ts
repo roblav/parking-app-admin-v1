@@ -24,10 +24,10 @@ export class ApiService {
   // CREATE API: POST /todos
   public createCarOwner(carOwner: CarOwner): Observable<CarOwner> {
     // will use this.http.post()
-    console.log(JSON.stringify(carOwner))
+    //console.log(JSON.stringify(carOwner))
     return this.http
       .post(API_URL + '/parking', carOwner)
-      .map(response => console.log(response) ) //null)
+      .map(response => null)
       .catch(this.handleError)
   }
 
@@ -43,14 +43,13 @@ export class ApiService {
     //return Observable.of(carOwnerData);
   }
 
-  // UPDATE API: PUT /todos/:id
-  public updateCarOwner(carOwner: CarOwner) {
-    // will use this.http.put()
-  }
-
   // DELETE /todos/:id
-  public deleteCarOwnerById(carOwnerId: number) {
-    // will use this.http.delete()
+  public deleteCarOwnerById(id: string): Observable<null> {
+    console.log(id)
+    return this.http
+      .delete(API_URL + '/parking/' + id)
+      .map(response => console.log(response))
+      .catch(this.handleError);
   }
 
   // API: GET /todos/:id

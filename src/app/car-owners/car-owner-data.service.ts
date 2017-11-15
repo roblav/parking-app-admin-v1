@@ -21,26 +21,11 @@ export class CarOwnerDataService {
   constructor(private api: ApiService) { }
 
   //CREATE Simulate POST /carowners
-  //addCarOwner(carOwner){
-  //  if(!carOwner.id){
-  //    carOwner.id = ++this.lastId;
-  //    //console.log(carOwner.id)
-  //  }
-//
-  //  this.carOwners.push(carOwner);
-  //  return this.carOwners;
-  //}
-
-  // Simulate POST /carowners
   addCarOwner(carOwner: CarOwner): Observable<null> {
     return this.api.createCarOwner(carOwner);
   }
 
   // READ Simulate GET /carowners
-  //getAllCarOwners(): CarOwner[] {
-  //  this.carOwners = carOwnerData
-  //  return this.carOwners
-  //}
   getAllCarOwners(): Observable<CarOwner[]> {
     return this.api.getAllCarOwners();
   }
@@ -59,11 +44,17 @@ export class CarOwnerDataService {
     return carOwner;
   }
 
+  // Simulate PUT /carowners
+  updateCarOwner(carOwner: CarOwner): Observable<CarOwner> {
+    return this.api.createCarOwner(carOwner);
+  }
+
   // DELETE Simulate DELETE /carowner/:id
-  deleteCarOwnerByID(id) {
-    this.carOwners = this.carOwners
-      .filter(carOwner => carOwner.id !== id)
-    return this;
+  deleteCarOwnerById(id): Observable<null> {
+    //this.carOwners = this.carOwners
+    //  .filter(carOwner => carOwner.id !== id)
+    //return this;
+    return this.api.deleteCarOwnerById(id);
   }
 
   // Simulate GET /carowner/:id

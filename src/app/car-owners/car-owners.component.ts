@@ -89,8 +89,19 @@ export class CarOwnersComponent implements OnInit, OnChanges {
     this.carOwnerDataService.updateCarOwnerById(id, carOwner);
   }
   //Delete
-  deleteCarOwner(id: number) {
-    this.carOwnerDataService.deleteCarOwnerByID(id);
+  //deleteCarOwner(id: number) {
+  //  this.carOwnerDataService.deleteCarOwnerByID(id);
+  //}
+
+  onDeleteCarOwner(id: string) {
+    console.log('DELETE: ' + id)
+    this.carOwnerDataService
+    .deleteCarOwnerById(id)
+    .subscribe(
+      (_) => {
+        this.carOwners = this.carOwners.filter((co) => co.id !== id)
+      }
+    )
   }
 
   /*___ Car List Listen events ___*/
@@ -104,16 +115,14 @@ export class CarOwnersComponent implements OnInit, OnChanges {
 
   /*___ Car Form Listen events ___*/
 
-  onUpdateCarOwner(carOwner: CarOwner) {
-    //console.log('Car Owner: '+JSON.stringify(carOwner));
-    //Update local car owner array
-    //Return all expect the matching carOwner
-    //Push updatedCarOwner back on to array
-    this.carOwners = this.carOwners.filter((co) => co.id !== carOwner.id)
-    this.carOwners.push(carOwner)
-    //Update the user on the API
-    this.updateCarOwner(carOwner.id, carOwner);
-
+  onUpdateCarOwner(carOwner: CarOwner){
+    this.carOwnerDataService
+      .updateCarOwner(carOwner)
+      .subscribe(
+        (_) => {
+          this.updateCarOwnersArray();
+        }
+      );
   }
 
   /*___ Car Reg Search Form ___*/
