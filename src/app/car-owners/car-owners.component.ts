@@ -27,8 +27,14 @@ export class CarOwnersComponent implements OnInit, OnChanges {
   person: Person = new Person();
   vehicle: Vehicle = new Vehicle();
   default: CarOwner = {
-        id: "0",
-        person: this.person,
+        id: "",
+        name: "",
+        mobileNumber: "",
+        workNumber: "",
+        emailAddress: "",
+        building: "",
+        floor: 0,
+        seat: "",
         vehicles:[this.vehicle]
       }
 
@@ -52,7 +58,7 @@ export class CarOwnersComponent implements OnInit, OnChanges {
     .getAllCarOwners()
     .subscribe(
       (carOwners) => {
-        //console.log(JSON.parse(carOwners["_body"]).carOwners)
+        console.log(JSON.parse(carOwners["_body"]).carOwners)
         this.carOwners = JSON.parse(carOwners["_body"]).carOwners;
       }
     )
@@ -61,8 +67,18 @@ export class CarOwnersComponent implements OnInit, OnChanges {
   /*___ CRUD ___*/
 
   //Create
-  addCarOwner(carOwner) {
-    this.carOwners = this.carOwnerDataService.addCarOwner(carOwner);
+  //addCarOwner(carOwner) {
+  //  this.carOwnerDataService.addCarOwner(carOwner);
+  //}
+
+  addCarOwner(carOwner: CarOwner){
+    this.carOwnerDataService
+      .addCarOwner(carOwner)
+      .subscribe(
+        (_) => {
+          //this.updateCarOwnersArray();
+        }
+      );
   }
   //Read
   getAllcarOwners() {

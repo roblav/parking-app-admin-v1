@@ -16,8 +16,14 @@ export class CarOwnersFormComponent implements OnInit, OnChanges {
   person: Person = new Person();
   vehicle: Vehicle = new Vehicle();
   default: CarOwner = {
-        id: "0",
-        person: this.person,
+        id: "",
+        name: "",
+        mobileNumber: "",
+        workNumber: "",
+        emailAddress: "",
+        building: "",
+        floor: 0,
+        seat: "",
         vehicles:[this.vehicle]
       }
   //Make sure that we not passing object by reference. Just copy object values
@@ -30,7 +36,7 @@ export class CarOwnersFormComponent implements OnInit, OnChanges {
   constructor() { }
 
   ngOnChanges() {
-    if(this.updateCarOwner.id !== "0"){
+    if(this.updateCarOwner.id !== ""){
       this.model = JSON.parse(JSON.stringify(this.updateCarOwner));
       this.editMode = true
     }

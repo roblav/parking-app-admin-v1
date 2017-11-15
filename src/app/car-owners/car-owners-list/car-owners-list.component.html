@@ -16,9 +16,9 @@
   <tbody>
   <tr *ngFor="let carOwner of carOwners">
     <td data-title="ID">{{carOwner.id}}</td>
-    <td data-title="Name">{{carOwner.person.name}}</td>
-    <td data-title="Email">{{carOwner.person.emailAddress}}</td>
-    <td data-title="Mobile Number">{{carOwner.person.mobileNumber}}</td>
+    <td data-title="Name">{{carOwner.name}}</td>
+    <td data-title="Email">{{carOwner.emailAddress}}</td>
+    <td data-title="Mobile Number">{{carOwner.mobileNumber}}</td>
     <td data-title="Vehicles">
       <p *ngFor="let vehicle of carOwner.vehicles">
         {{vehicle.regNo}}

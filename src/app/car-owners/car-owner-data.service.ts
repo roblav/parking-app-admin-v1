@@ -21,14 +21,19 @@ export class CarOwnerDataService {
   constructor(private api: ApiService) { }
 
   //CREATE Simulate POST /carowners
-  addCarOwner(carOwner){
-    if(!carOwner.id){
-      carOwner.id = ++this.lastId;
-      console.log(carOwner.id)
-    }
+  //addCarOwner(carOwner){
+  //  if(!carOwner.id){
+  //    carOwner.id = ++this.lastId;
+  //    //console.log(carOwner.id)
+  //  }
+//
+  //  this.carOwners.push(carOwner);
+  //  return this.carOwners;
+  //}
 
-    this.carOwners.push(carOwner);
-    return this.carOwners;
+  // Simulate POST /carowners
+  addCarOwner(carOwner: CarOwner): Observable<null> {
+    return this.api.createCarOwner(carOwner);
   }
 
   // READ Simulate GET /carowners

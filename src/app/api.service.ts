@@ -22,8 +22,13 @@ export class ApiService {
   /*___ CRUD ___*/
   
   // CREATE API: POST /todos
-  public createCarOwner(carOwner: CarOwner) {
+  public createCarOwner(carOwner: CarOwner): Observable<CarOwner> {
     // will use this.http.post()
+    console.log(JSON.stringify(carOwner))
+    return this.http
+      .post(API_URL + '/parking', carOwner)
+      .map(response => console.log(response) ) //null)
+      .catch(this.handleError)
   }
 
   // READ API: GET /todos
