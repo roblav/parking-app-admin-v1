@@ -7,5 +7,5 @@ export const environment = {
   production: false,
   local: true,
   // URL of production API
-  apiUrl: 'http://localhost:9090/'
+  apiUrl: 'http://151.236.33.10:9090'
 };

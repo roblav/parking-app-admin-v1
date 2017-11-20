@@ -146,4 +146,8 @@ export class CarOwnersComponent implements OnInit, OnChanges {
     //Clear input
     this.carReg = "";
   }
+
+  onSkypeAlertCarOwner(name: String){
+    //do nothing
+  }
 }
