@@ -12,10 +12,6 @@ export class CarOwner {
   public seat: string = "";
   public vehicles: Vehicle[];
 
-  public createdAt?: string;
-  public updateAt?: string;
-  public __v?: number;
-
   constructor(values: Object = {}){
     Object.assign(this, values)
   }
