@@ -94,7 +94,7 @@ export class CarOwnersComponent implements OnInit, OnChanges {
   //}
 
   onDeleteCarOwner(id: string) {
-    console.log('DELETE: ' + id)
+
     this.carOwnerDataService
     .deleteCarOwnerById(id)
     .subscribe(

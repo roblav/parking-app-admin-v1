@@ -33,7 +33,7 @@ export class CarOwnerDataService {
   // UPDATE Simulate PUT /carowners
   updateCarOwnerById(id: string, values: Object = {}): CarOwner {
 
-    console.log(id)
+    //console.log(id)
     let carOwner = this.getCarOwnerById(id)
     //console.log(id)
     if (!carOwner){
