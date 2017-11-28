@@ -37,8 +37,10 @@ export class CarOwnersFormComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
 
-  onChange($event) {
-    
+  onChangeCarReg(event,i) {
+    if(event) {
+      this.model.vehicles[i].regNo = event.toString().toUpperCase();
+    }
   }
 
   //Closing the form should reset the model to default CarOwner
