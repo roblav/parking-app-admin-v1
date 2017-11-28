@@ -13,19 +13,7 @@ import { Vehicle } from '../shared/vehicle.model'
 export class CarOwnersFormComponent implements OnInit, OnChanges {
 
   editMode: boolean = false;
-  person: Person = new Person();
-  vehicle: Vehicle = new Vehicle();
-  default: CarOwner = {
-        id: "",
-        name: "",
-        mobileNumber: "",
-        workNumber: "",
-        emailAddress: "",
-        building: "",
-        floor: 0,
-        seat: "",
-        vehicles:[this.vehicle]
-      }
+  default: CarOwner = new CarOwner()
   //Make sure that we not passing object by reference. Just copy object values
   model = JSON.parse(JSON.stringify(this.default));
 
@@ -47,6 +35,10 @@ export class CarOwnersFormComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+  }
+
+  onChange($event) {
+    
   }
 
   //Closing the form should reset the model to default CarOwner

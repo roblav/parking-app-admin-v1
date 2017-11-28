@@ -5,42 +5,46 @@
     <div class="modal-content">
       <div class="modal-header">
         <h2 class="modal-title" id="exampleModalLabel">Register a new Car Owner</h2>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onClose(); form.resetForm()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form #form="ngForm">
           <fieldset>
             <legend>Person Details</legend>
             <div class="form-group row">
               <label for="name" class="col-sm-2 col-form-label">ID</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="id" required [(ngModel)]="model.id" name="id">
+                <input #id="ngModel" type="text" class="
+                form-control" id="id" required [(ngModel)]="model.id" name="id">
+                <div class="alert alert-danger" *ngIf="id.invalid && id.touched">Please provide your enterprise ID</div>
               </div>
             </div>
             <div class="form-group row">
               <label for="name" class="col-sm-2 col-form-label">Name</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name">
+                <input #name="ngModel" type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name">
+                <div class="alert alert-danger" *ngIf="name.invalid && name.touched">Please input your name</div>
               </div>
             </div>
             <div class="form-group row">
-              <label for="email" class="col-sm-2 col-form-label">Email</label>
+              <label for="emailAddress" class="col-sm-2 col-form-label">Email</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="email" [(ngModel)]="model.emailAddress" name="email">
+                <input #emailAddress="ngModel" type="email" class="form-control" id="emailAddress" [(ngModel)]="model.emailAddress" name="emailAddress" required>
+                <div class="alert alert-danger" *ngIf="emailAddress.invalid && emailAddress.touched">Please input your email address</div>
               </div>
             </div>
             <div class="form-group row">
-              <label for="mobile" class="col-sm-2 col-form-label">Mobile</label>
+              <label for="mobileNumber" class="col-sm-2 col-form-label">Mobile</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="mobile" [(ngModel)]="model.mobileNumber" name="mobile">
+                <input type="text" class="form-control" id="mobileNumber" [(ngModel)]="model.mobileNumber" name="mobileNumber">
               </div>
             </div>
             <div class="form-group row">
               <label for="workNumber" class="col-sm-2 col-form-label">Work Number</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="workNumber" [(ngModel)]="model.workNumber" name="mobileNumber">
+                <input type="text" class="form-control" id="workNumber" [(ngModel)]="model.workNumber" name="workNumber">
               </div>
             </div>
             <div class="form-group row">
@@ -68,7 +72,7 @@
             <div class="form-group row" *ngFor="let vehicle of model.vehicles; let i = index">
               <label for="carReg{{i}}" class="col-sm-2 col-form-label">Car Reg {{i}}</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="regNo{{i}}" required [(ngModel)]  ="vehicle.regNo" name="regNo{{i}}">
+                <input type="text" class="form-control" id="regNo{{i}}" required [(ngModel)]="vehicle.regNo" (ngModelChange)="onChange($event)" name="regNo{{i}}">
               </div>
             </div>
 
@@ -76,9 +80,10 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="onClose()">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="onSubmit()">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="onClose(); form.resetForm()">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="onSubmit(); form.resetForm()" [disabled]="form.invalid">Save changes</button>
       </div>
+
     </div>
   </div>
 </div>
