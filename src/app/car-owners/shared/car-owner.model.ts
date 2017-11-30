@@ -1,4 +1,3 @@
-import { Person } from './person.model'
 import { Vehicle } from './vehicle.model'
 
 export class CarOwner {

@@ -3,7 +3,6 @@ import { Observable } from 'rxjs/Observable';
 import { ApiService } from '../api.service';
 
 import { CarOwner } from './shared/car-owner.model';
-import { Person } from './shared/person.model';
 import { Vehicle } from './shared/vehicle.model'
 
 import * as data from './db.json';

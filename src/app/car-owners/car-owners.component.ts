@@ -4,8 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CarOwnerDataService } from './car-owner-data.service';
 
 import { CarOwner } from './shared/car-owner.model';
-import { Person } from './shared/person.model';
-import { Vehicle } from './shared/vehicle.model'
+import { Vehicle } from './shared/vehicle.model';
 
 //const carOwners = (<any>data).carOwners;
 //console.log(carOwners[0]); // output 'testing' 
@@ -24,19 +23,8 @@ export class CarOwnersComponent implements OnInit, OnChanges {
   carOwnersOrig: CarOwner[] = []
   editCarOwner: CarOwner;
 
-  person: Person = new Person();
   vehicle: Vehicle = new Vehicle();
-  default: CarOwner = {
-        id: "",
-        name: "",
-        mobileNumber: "",
-        workNumber: "",
-        emailAddress: "",
-        building: "",
-        floor: 0,
-        seat: "",
-        vehicles:[this.vehicle]
-      }
+  default: CarOwner = new CarOwner()
 
   model: CarOwner = JSON.parse(JSON.stringify(this.default));
 

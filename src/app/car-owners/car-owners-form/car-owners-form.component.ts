@@ -2,7 +2,6 @@ import { Component, OnInit, OnChanges, Input, Output, EventEmitter} from '@angul
 import { FormsModule } from '@angular/forms';
 
 import { CarOwner } from '../shared/car-owner.model';
-import { Person } from '../shared/person.model';
 import { Vehicle } from '../shared/vehicle.model'
 
 @Component({
