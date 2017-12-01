@@ -52,14 +52,20 @@ export class ApiService {
     console.log(id)
     return this.http
       .delete(API_URL + '/parking/' + id)
-      .map(response => console.log(response))
+      .map(response => null)
       .catch(this.handleError);
   }
 
-  // API: GET /todos/:id
-  public getCarOwnerById(carOwnerId: number) {
-    // will use this.http.get()
-    //parking/carOwnerId //The%20Park%20Knight
+  // API: GET /owner/{vehicleNo}
+  // Use for search
+  public getCarOwnerById(id: string): Observable<CarOwner> {
+    return this.http
+      .get(API_URL + '/owner/' + id)
+      .map(response => {
+        return response.json();
+        //return carOwnersData.map((carOwner) => new CarOwner(carOwner));
+      })
+      .catch(this.handleError);
   }
 
   private handleError (error: Response | any) {

@@ -30,17 +30,14 @@ export class CarOwnerDataService {
   }
 
   // UPDATE Simulate PUT /carowners
-  updateCarOwnerById(id: string, values: Object = {}): CarOwner {
-
-    //console.log(id)
-    let carOwner = this.getCarOwnerById(id)
-    //console.log(id)
-    if (!carOwner){
-      return null;
-    }
-    Object.assign(carOwner, values);
-    return carOwner;
-  }
+  // updateCarOwnerById(id: string, values: Object = {}): CarOwner {
+  //   let carOwner = this.getCarOwnerById(id)
+  //   if (!carOwner){
+  //     return null;
+  //   }
+  //   Object.assign(carOwner, values);
+  //   return carOwner;
+  // }
 
   // Simulate PUT /carowners
   updateCarOwner(carOwner: CarOwner): Observable<CarOwner> {
@@ -48,7 +45,7 @@ export class CarOwnerDataService {
   }
 
   // DELETE Simulate DELETE /carowner/:id
-  deleteCarOwnerById(id): Observable<null> {
+  deleteCarOwnerById(id: string): Observable<null> {
     //this.carOwners = this.carOwners
     //  .filter(carOwner => carOwner.id !== id)
     //return this;
@@ -56,11 +53,8 @@ export class CarOwnerDataService {
   }
 
   // Simulate GET /carowner/:id
-  getCarOwnerById(id): CarOwner {
-    console.log(this.carOwners)
-    return this.carOwners
-      .filter(carOwner => carOwner.id === id)
-      .pop()
+  getCarOwnerById(id: string): Observable<CarOwner> {
+    return this.api.getCarOwnerById(id);
   }
 
 }

@@ -82,30 +82,24 @@ export class CarOwnersComponent implements OnInit, OnChanges {
   }
 
   /*___ Car List Listen events ___*/
-
   onEditCarOwner(id: string) {
     let carOwner = this.carOwners.filter((co) => co.id === id).pop();
     this.model = Object.assign({}, carOwner);
   }
 
   /*___ Car Reg Search Form ___*/
-
-  onSearchCarReg() {
-    //console.log(this.carReg)
-    if(this.carReg !== ""){
-      this.carOwnersOrig = this.carOwners;
-      //loop over each carOwner object
-      let carSearch = this.carOwners.filter((co) => co.vehicles.filter((vehicle) => vehicle.regNo === this.carReg).pop()).pop();
-      this.carOwners = [carSearch]
-    }
-    else if (this.carOwnersOrig !== []){
-      this.carOwners = this.carOwnersOrig;
-    }
-    
+  onSearchCarReg(id: string) {
+    this.carOwnerDataService
+      .getCarOwnerById(id)
+      .subscribe(
+        (carOwner) => {
+          this.carOwners = [carOwner]
+        }
+      )
   }
 
   onClearSearchCarReg(){
-    this.carOwners = this.carOwnersOrig;
+    this.getAllcarOwners();
     //Clear input
     this.carReg = "";
   }
