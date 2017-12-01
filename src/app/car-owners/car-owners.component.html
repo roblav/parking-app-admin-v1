@@ -7,10 +7,12 @@
       <div class="card">
         <div class="card-block">
           <p class="card-text">Search Car Registration:</p>
-          <input type="text" name="search-car-reg" [(ngModel)]="carReg">
+          <input type="text" name="search-car-reg" [(ngModel)]="carReg" (ngModelChange)="onChangeCarReg($event)">
           <button type="button" class="btn btn-primary" (click)="onSearchCarReg(carReg)">Go!</button>
           <button id="clearSearchCarReg" type="button" class="btn btn-secondary" (click)="onClearSearchCarReg()">Clear</button>
         </div>
+
+        <div class="alert" *ngIf="carRegSearchError">No result found, please try again.</div>
       </div>
     </div>
 

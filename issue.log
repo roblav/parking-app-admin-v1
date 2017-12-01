@@ -9,5 +9,5 @@ The [disabled]="!ngForm.valid" was interferring with the dismiss modal call. So,
 
 //Search Car Registration
 
-Use the GET /owner/{vehicleNo} for the search Car Registration
+The API doesn't return the Vehicle details.
 

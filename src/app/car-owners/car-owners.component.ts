@@ -17,6 +17,7 @@ export class CarOwnersComponent implements OnInit, OnChanges {
   carOwners: CarOwner[] = [];
   carOwnersOrig: CarOwner[] = [];
   editCarOwner: CarOwner;
+  carRegSearchError: Boolean = false
 
   vehicle: Vehicle = new Vehicle();
   default: CarOwner = new CarOwner()
@@ -93,15 +94,26 @@ export class CarOwnersComponent implements OnInit, OnChanges {
       .getCarOwnerById(id)
       .subscribe(
         (carOwner) => {
-          this.carOwners = [carOwner]
+          this.carOwners = [carOwner];
+          this.carRegSearchError = false;
+        },
+        error => {
+          this.carRegSearchError = true;
         }
       )
+  }
+
+  onChangeCarReg(event) {
+    if(event) {
+      this.carReg = event.toString().toUpperCase();
+    }
   }
 
   onClearSearchCarReg(){
     this.getAllcarOwners();
     //Clear input
     this.carReg = "";
+    this.carRegSearchError = false;
   }
 
   onSkypeAlertCarOwner(name: String){
