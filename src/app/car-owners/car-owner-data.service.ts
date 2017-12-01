@@ -39,7 +39,6 @@ export class CarOwnerDataService {
       return null;
     }
     Object.assign(carOwner, values);
-    console.log(this.carOwners)
     return carOwner;
   }
 

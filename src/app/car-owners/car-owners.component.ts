@@ -53,9 +53,6 @@ export class CarOwnersComponent implements OnInit, OnChanges {
   /*___ CRUD ___*/
 
   //Create
-  //addCarOwner(carOwner) {
-  //  this.carOwnerDataService.addCarOwner(carOwner);
-  //}
 
   addCarOwner(carOwner: CarOwner){
     this.carOwnerDataService
