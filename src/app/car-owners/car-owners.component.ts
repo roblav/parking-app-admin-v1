@@ -1,13 +1,9 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
-//import * as data from './db.json';
 import { FormsModule } from '@angular/forms';
 import { CarOwnerDataService } from './car-owner-data.service';
 
 import { CarOwner } from './shared/car-owner.model';
 import { Vehicle } from './shared/vehicle.model';
-
-//const carOwners = (<any>data).carOwners;
-//console.log(carOwners[0]); // output 'testing' 
 
 @Component({
   selector: 'car-owners',
@@ -30,17 +26,28 @@ export class CarOwnersComponent implements OnInit, OnChanges {
   constructor(private carOwnerDataService: CarOwnerDataService) { }
 
   ngOnChanges() {
-    this.updateCarOwnersArray();
+    this.getAllcarOwners();
   }
 
   ngOnInit() {
-    this.updateCarOwnersArray();
+    this.getAllcarOwners();
   }
 
-  /*___ Helper Method ___*/
+  /*___ CRUD ___*/
 
-  updateCarOwnersArray(){
-    //this.carOwners = this.getAllcarOwners();
+  //Create
+  addCarOwner(carOwner: CarOwner){
+    this.carOwnerDataService
+      .addCarOwner(carOwner)
+      .subscribe(
+        (_) => {
+          this.getAllcarOwners();
+        }
+      );
+  }
+
+  //Read
+  getAllcarOwners() {
     this.carOwnerDataService
     .getAllCarOwners()
     .subscribe(
@@ -50,34 +57,21 @@ export class CarOwnersComponent implements OnInit, OnChanges {
     )
   }
 
-  /*___ CRUD ___*/
+  //Update
+  /*___ Car Form Listen events ___*/
 
-  //Create
-
-  addCarOwner(carOwner: CarOwner){
+  onUpdateCarOwner(carOwner: CarOwner){
     this.carOwnerDataService
-      .addCarOwner(carOwner)
+      .updateCarOwner(carOwner)
       .subscribe(
         (_) => {
-          //this.updateCarOwnersArray();
+          this.getAllcarOwners();
         }
       );
   }
-  //Read
-  getAllcarOwners() {
-    return this.carOwnerDataService.getAllCarOwners();
-  }
-  //Update
-  updateCarOwner(id: string, carOwner: CarOwner) {
-    this.carOwnerDataService.updateCarOwnerById(id, carOwner);
-  }
+
   //Delete
-  //deleteCarOwner(id: number) {
-  //  this.carOwnerDataService.deleteCarOwnerByID(id);
-  //}
-
   onDeleteCarOwner(id: string) {
-
     this.carOwnerDataService
     .deleteCarOwnerById(id)
     .subscribe(
@@ -92,20 +86,6 @@ export class CarOwnersComponent implements OnInit, OnChanges {
   onEditCarOwner(id: string) {
     let carOwner = this.carOwners.filter((co) => co.id === id).pop();
     this.model = Object.assign({}, carOwner);
-
-    //this.updateCarOwnersArray();
-  }
-
-  /*___ Car Form Listen events ___*/
-
-  onUpdateCarOwner(carOwner: CarOwner){
-    this.carOwnerDataService
-      .updateCarOwner(carOwner)
-      .subscribe(
-        (_) => {
-          this.updateCarOwnersArray();
-        }
-      );
   }
 
   /*___ Car Reg Search Form ___*/

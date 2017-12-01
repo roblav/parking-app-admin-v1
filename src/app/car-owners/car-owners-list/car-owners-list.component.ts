@@ -20,6 +20,7 @@ export class CarOwnersListComponent implements OnInit {
   ngOnInit() {}
 
   editCarOwner(id){ this.edit.emit(id) }
+  
   deleteCarOwner(id){
     this.deleteCarID = id
   }

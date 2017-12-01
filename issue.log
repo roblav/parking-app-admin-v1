@@ -2,3 +2,12 @@
 
 As an admin I want to be able to update a CarOwners ID.
 Currently we can't update a users ID. We only have POST /parking endpoint, which takes a CarParking object and does both the PUT and the UPDATE. If we change a CarOwner id a new CarOwner is created.
+
+//Form validation
+
+The [disabled]="!ngForm.valid" was interferring with the dismiss modal call. So, when saving data the form would not close. For now I've removed the disable save button option.
+
+//Search Car Registration
+
+Use the GET /owner/{vehicleNo} for the search Car Registration
+
