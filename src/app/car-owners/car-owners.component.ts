@@ -19,8 +19,7 @@ export class CarOwnersComponent implements OnInit, OnChanges {
 
   carReg: string = "";
   carOwners: CarOwner[] = [];
-  carOwnerTest: CarOwner;
-  carOwnersOrig: CarOwner[] = []
+  carOwnersOrig: CarOwner[] = [];
   editCarOwner: CarOwner;
 
   vehicle: Vehicle = new Vehicle();
@@ -46,7 +45,7 @@ export class CarOwnersComponent implements OnInit, OnChanges {
     .getAllCarOwners()
     .subscribe(
       (carOwners) => {
-        console.log(JSON.parse(carOwners["_body"]).carOwners)
+        //console.log(JSON.parse(carOwners["_body"]).carOwners)
         this.carOwners = JSON.parse(carOwners["_body"]).carOwners;
       }
     )

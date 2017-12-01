@@ -20,7 +20,7 @@ export class CarOwnerDataService {
   constructor(private api: ApiService) { }
 
   //CREATE Simulate POST /carowners
-  addCarOwner(carOwner: CarOwner): Observable<null> {
+  addCarOwner(carOwner: CarOwner): Observable<CarOwner> {
     return this.api.createCarOwner(carOwner);
   }
 
