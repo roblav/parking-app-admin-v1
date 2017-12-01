@@ -45,8 +45,7 @@ export class CarOwnersComponent implements OnInit, OnChanges {
     .getAllCarOwners()
     .subscribe(
       (carOwners) => {
-        //console.log(JSON.parse(carOwners["_body"]).carOwners)
-        this.carOwners = JSON.parse(carOwners["_body"]).carOwners;
+        this.carOwners = carOwners;
       }
     )
   }

@@ -39,6 +39,10 @@ export class ApiService {
     //this.http.get()
     return this.http
       .get(API_URL + '/parking')
+      .map( response => {
+        const carOwnersData = response.json();
+        return carOwnersData.carOwners.map((carOwner) => new CarOwner(carOwner));
+      })
       .catch(this.handleError)
     //return Observable.of(carOwnerData);
   }
